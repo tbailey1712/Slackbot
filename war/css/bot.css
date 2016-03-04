@@ -1,0 +1,45 @@
+.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form { 
+	font-family: Arial, Helvetica, sans-serif; color: black
+	}
+	
+	.bootstrap-iso form button, .bootstrap-iso form button:hover { 
+		color: white !important;
+	} 
+	
+.asteriskField{color: red;}
+
+.panel {
+    	margin : 15px;
+}
+
+.bootstrap-switch-wrapper {
+    	margin: 5px;
+    }
+/* Custom page header */
+.header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 750px;
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}

@@ -1,0 +1,2 @@
+serviceClass: com.digitas.slack.client.GreetingService
+path: D0522A988C4975F83BF1D7A312E9586E.gwt.rpc

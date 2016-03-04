@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cronentries>
+  <cron>
+    <url>/bot/dailyupdate</url>
+    <description>Send a daily update on project status and milestones</description>
+    <schedule>every day 10:00</schedule>
+  </cron>
+</cronentries>
