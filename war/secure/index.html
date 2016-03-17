@@ -8,13 +8,13 @@
 	<title>Slackbot Config</title>
 	
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
-	<link href="css/bootstrap-switch.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+	<link href="../css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="../css/bootstrap-switch.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" rel="stylesheet">	
-    <link href="css/datepicker.css" rel="stylesheet">
+    <link href="../css/datepicker.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/bot.css" rel="stylesheet">
+    <link href="../css/bot.css" rel="stylesheet">
     
     <style>
     
@@ -103,8 +103,8 @@
 
 		
 		<div class="row">
-			<div class="col-md-4"><label class="control-label" for="date">Launch Date</label></div>
-			<div class="col-md-4"><input class="form-control" id="launchDate" name="txtLaunchDate" type="text"/></div>
+			<div class="col-md-4"><label class="control-label" for="txtLaunchDate">Launch Date</label></div>
+			<div class="col-md-4"><input class="form-control" id="txtLaunchDate" name="txtLaunchDate" type="text"/></div>
 			<div class="col-md-4"><button class="btn btn-primary " id="btnSaveDate" name="submit">Save Date</button></div>
 		</div>
 
@@ -181,7 +181,7 @@
 
 </div> <!-- Responses Panel -->
 
-<footer class="footer"><p>&copy; 2016 DigitasLBi Chicago (update 02-25-2016 15:03)</p></footer>
+<footer class="footer"><p>&copy; 2016  (update 03-17-2016 15:03)</p></footer>
 
 </div> <!-- Main Panel -->
 
@@ -247,11 +247,11 @@
 </div> <!--  Container  -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>    
+    <script src="../js/bootstrap.min.js"></script>    
     <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>    
-    <script src="js/bootstrap-datepicker.js"></script>
-    <script src="js/bootstrap-switch.js"></script>
-    <script src="js/jquery.easy-overlay.js"></script>
+    <script src="../js/bootstrap-datepicker.js"></script>
+    <script src="../js/bootstrap-switch.js"></script>
+    <script src="../js/jquery.easy-overlay.js"></script>
     
     
     <script>
@@ -274,7 +274,7 @@
 			format: 'mm-dd-yyyy'
 		});
 
-    	$('#launchDate').datepicker({
+    	$('#txtLaunchDate').datepicker({
 			format: 'mm-dd-yyyy'
 		});
     	
@@ -423,6 +423,9 @@
             }
             else
             {
+            	phaseTable = $('#phases').DataTable();
+            	phaseTable.destroy();
+            	
             	loadPhases(team);
             	loadTeamPrefs(team);
             	$('#teamName').html(team);
@@ -507,6 +510,7 @@
     	$("#configPanelBody").easyOverlay("start");
     	var teamname = $("#teamName").html();
     	var postdata = $("#txtLaunchDate").val();    	
+    	
     	post('/bot/launchdate/' + teamname, postdata);
     	$("#configPanelBody").easyOverlay("stop");
     }

@@ -50,6 +50,7 @@ public class LoginFilter implements Filter
 	        {
 	        	log.fine("No Password required for page " + uri);
 	        	chain.doFilter(request, response);
+	        	return;
 	        }
       
 	        
@@ -62,6 +63,7 @@ public class LoginFilter implements Filter
 	        {
 	            log.warning("Unauthorized access request for " + uri );
 	            res.sendRedirect("/login.html");
+	            return;
 	            //RequestDispatcher dispatcher = context.getRequestDispatcher("/login.html");
 	            //dispatcher.forward(request, response); 	            
 	            // pass the request along the filter chain

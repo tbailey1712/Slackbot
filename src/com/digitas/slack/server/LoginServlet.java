@@ -1,5 +1,6 @@
 package com.digitas.slack.server;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.logging.Logger;
 
@@ -27,29 +28,33 @@ public class LoginServlet extends HttpServlet
 			throws ServletException, IOException 
 	{
         //String user = request.getParameter("email");
-        String pwd = request.getParameter("password");
+        String pwd = request.getParameter("txtPassword");
+        //String data = getPostData(request);
 		
 		ApiProxy.Environment env = ApiProxy.getCurrentEnvironment();
 		String appID = env.getAppId();
         DataService dataService = DataService.createService();
-		log.info("Login Request on " + appID + " with password " + pwd);
+		log.info("Login Request on " + appID + " with password=" + pwd);
 		
 		Preferences prefs = dataService.getPrefs();
 		
 		if (prefs.getPassword().equals(pwd))
 		{
+			log.fine("Password Authenticated");
 			HttpSession session = request.getSession();
             session.setAttribute("authenticated", "true");
             session.setMaxInactiveInterval(30*60);
             Cookie cookie = new Cookie("DigitasProjectbot", "slack");
             response.addCookie(cookie);
             
-            response.sendRedirect("/index.html");			
+            response.sendRedirect("/secure/index.html");			
 		}
 		else
 		{
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html?error=failed");
-            rd.include(request, response);
+			log.fine("Incorrect Password");
+			response.sendRedirect("/login.html?error=failed");
+            //RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html?error=failed");
+            //rd.forward(request, response);
         }
 	}
 
@@ -58,8 +63,25 @@ public class LoginServlet extends HttpServlet
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		resp.sendRedirect("/index.html");
+		resp.sendRedirect("/login.html");
+		
+		//resp.sendRedirect("/secure/index.html");
 	}
 	
+	  private  String getPostData(HttpServletRequest req) {
+		  StringBuilder sb = new StringBuilder();
+		  try {
+		    	  // Read from request
+		        BufferedReader reader = req.getReader();
+		        String line;
+		        while ((line = reader.readLine()) != null) {
+		            sb.append(line);
+		        }
+		    } catch(IOException e) {
+		        e.printStackTrace();    
+		    } 
+
+		    return sb.toString().trim();
+		}
 
 }

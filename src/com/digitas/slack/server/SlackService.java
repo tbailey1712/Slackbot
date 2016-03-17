@@ -40,9 +40,8 @@ public class SlackService
 		return service;
 	}
 	
-	// Webhook URL https://hooks.slack.com/services/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
+
 	// {"text": "This is a line of text in a channel.\nAnd this is another line of text."}
-	// https://digitas-tech-chisf.slack.com/apps/build/custom-integration
 	public void sendMessage(String webhook, String json)
 	{       
         try 
@@ -94,6 +93,7 @@ public class SlackService
 		{
 			response = getSlackResponseJSON(false, "Sorry, can't do that yet...", null);			
 		}		
+		// else check question/answer table
 		else
 		{
 			response = getSlackResponseJSON(false, "Try again with a command.  Use 'help' to get an idea....", null);
@@ -110,13 +110,16 @@ public class SlackService
     		//jo.put("response_type", "in_channel");
 			jo.put("text", message);
 			
+			if (broadcast)
+			{
+				jo.put("response_type", "in_channel");									
+			}
+			
 			if (additional != null) 
 			{
 				JSONObject jao = new JSONObject();
-				if (broadcast)
-				{
-					jao.put("response_type", "in_channel");									
-				}
+
+				//jao.put("username", "Project Status Bot");
 				jao.put("text", additional);				
 				
 				JSONArray ja = new JSONArray();
