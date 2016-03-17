@@ -1,2 +1,0 @@
-# milestonebot
-Slack Milestones Bot
