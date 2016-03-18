@@ -77,17 +77,20 @@ public class SlackService
 		
 		if (command.equals("dates"))
 		{
-			response = getMilestonesResponse(true, message);
+			response = getMilestonesResponse(false, message);
 		}
 		else if (command.equals("help"))
 		{
-			response = getSlackResponseJSON(false, "dates, help, launch, add", "Though all may not work yet...");
+			response = getSlackResponseJSON(false, "announce: Broadcast the project schedule\n dates: Project schedule\n launch: Just the launch date\n add: not ready yet\n", "More fun things to come...");
 		
+		}
+		else if (command.equals("announce"))
+		{
+			response = getMilestonesResponse(true, message);			
 		}
 		else if (command.equals("launch"))
 		{
-			response = getSlackResponseJSON(true, "Site Launches in 3 days", null);
-			
+			response = getLaunchDateResponse(message);
 		}
 		else if (command.equals("add"))
 		{
@@ -152,6 +155,22 @@ public class SlackService
 
 	}
 	
+	private String getLaunchDateResponse(SlackMessage message)
+	{
+		StringBuffer sb = new StringBuffer();
+		String teamName = message.getTeamDomain();
+
+		DataService dataService = DataService.createService();
+		Team team = dataService.getTeam(teamName);
+		String launch = team.getLaunchDateFormatted();
+		
+		sb.append("Site launches on ").append(launch);
+		String resp = getSlackResponseJSON(false, sb.toString(), null);
+		log.fine("Response: " + resp);
+		return resp;
+	
+	}
+
 	private String getMilestonesResponse(boolean broadcast, SlackMessage message)
 	{
 		StringBuffer sb = new StringBuffer();
