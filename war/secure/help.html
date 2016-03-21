@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Slackbot Help</title>
+	
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+	<link href="../css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/bot.css" rel="stylesheet">
+   
+</head>
+<body role="document">
+
+<div class="container">
+
+<div id="mainPanel" class="container-fluid">
+
+	<div class="header clearfix">
+		
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+				<h3 class="text-muted">Project Bot Help</h3>
+				
+		    </div>
+		    <div class="collapse navbar-collapse">
+		    <p id="helpIcon" class="navbar-text navbar-right"><span class="glyphicon glyphicon-question-sign"></span></p>&nbsp;&nbsp;
+		    	<p id="configIcon" class="navbar-text navbar-right"><a href="help.html"><span class="glyphicon glyphicon-cog"></span></a></p>
+		    </div> 		    
+		  </div>
+		</nav>		
+	</div>
+      
+	<div>
+		<p></p>
+		<h2>Add the Status Bot to your Slack Team</h2>
+		<p>From the "Team to Work With" drop down, select "Create new team..."</p>
+		<p>Then select your team from the list.  Click the Refresh icon if your team doesn't show up.</p>
+		
+		<h2>Create an Incoming Webhook</h2>
+		<p>This allows messages to be posted directly to the team, such as the daily status updates</p>
+		<p>You'll need to be a project admin.  Open the App Manage page on Slack in a browser for your team: 
+			https://[MYTEAMNAME].slack.com/apps/manage</p>
+		<p>Choose the Custom Integrations tab and then Incoming Webhooks</p>
+		<img src="/images/custom-integrations.png" width="100%"/>
+		<p>Add a new configuration</p>
+		<img src="/images/add-configuration.png" width="100%"/>
+		<p>Make a copy of the Webhook URL value to store in the configuration.  Paste the URL and click Save URL</p>
+		<h2>Add a Slash command</h2>
+		<p>The Slackbot relies on /slash commands rather than the Realtime Messaging API from Slack</p>
+		<p>To configure a slash command, select "Build your own" in the upper right hand corner of the page</p>
+		<img src="/images/byo.png" width="100%"/>
+		<p>And then select "Make a custom integration"</p>
+		<p>Select Slash Commands from the list</p>
+		<img src="/images/new-slash.png" width="100%"/>
+		<p>Choose the command to summon the bot.  For consistency, we're using /statusbot</p>
+		<p>The URL to call is  https://slackbot-1225.appspot.com/bot/slash </p>
+		<p>Paste the Token into Verfication Token and click Save Key</p>
+		<img src="/images/get-token.png" width="100%"/>
+		<p>Save your new integration on Slack and you're ready to add dates to the bot.</p>
+		
+	</div>
+
+            
+
+</div> <!-- Main Panel -->
+
+</div> <!--  Container  -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>    
+    
+    
+   
+</body>
+</html>

@@ -184,9 +184,16 @@ public class SlackbotServlet extends HttpServlet {
 	    	}
 	    }
 
-	    else if (service.equals("deletephase"))
+	    else if (service.startsWith("deletephase"))
 	    {
-	    	dataService.deletePhase(id, data);
+	    	int idx = service.indexOf("/");
+	    	
+	    	if (idx > 0)
+	    	{
+		    	String team = service.substring(idx+1);
+		    	dataService.deletePhase(team, data);
+	    	}
+	    	
 	    }
 	    out.flush();
 

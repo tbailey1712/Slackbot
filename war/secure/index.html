@@ -15,12 +15,7 @@
     <link href="../css/datepicker.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/bot.css" rel="stylesheet">
-    
-    <style>
-    
-    
-    </style>
-    
+        
    
 </head>
 <body role="document">
@@ -38,7 +33,7 @@
 				
 		    </div>
 		    <div class="collapse navbar-collapse">
-		    <p id="helpIcon" class="navbar-text navbar-right"><span class="glyphicon glyphicon-help"></span></p>&nbsp;&nbsp;
+		    <p id="helpIcon" class="navbar-text navbar-right"><a href="help.html" target="_blank"><span class="glyphicon glyphicon-question-sign"></span></a></p>&nbsp;&nbsp;
 		    	<p id="configIcon" class="navbar-text navbar-right"><span class="glyphicon glyphicon-cog"></span></p>
 		    </div> 		    
 		  </div>
@@ -182,7 +177,7 @@
 
 </div> <!-- Responses Panel -->
 
-<footer class="footer"><p>&copy; 2016  (update 03-17-2016 15:03)</p></footer>
+<footer class="footer"><p>&copy; 2016  (update 03-20-2016 19:03)</p></footer>
 
 </div> <!-- Main Panel -->
 
@@ -340,10 +335,9 @@
 
     $(document).on('click','.btn-danger',function(){
     	var button = $(this);
-    	console.log("Delete details " + button);
-    	alert("Check console");
-        var id = $(this).attr('id'); // $(this) refers to button that was clicked
-      //  deletePhase(id);
+        var id = button.attr('id'); // $(this) refers to button that was clicked
+        console.log("Delete ID = " + id);
+        deletePhase(id);
     });
     
     function loadPhases(team)
@@ -534,7 +528,10 @@
     
     function deletePhase(id)
     {
-    	post('/bot/deletephase', id);
+    	var team = $('#teamName').html();
+    	var url = "/bot/deletephase/" + team;
+    	
+    	post(url, id);
     	pauseAndReloadTable();
     }
     </script>

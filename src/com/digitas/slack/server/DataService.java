@@ -86,16 +86,20 @@ public class DataService
 		  }
 	}
 	
-	public void deletePhase(String id, String name)
+	public void deletePhase(String team, String phaseName)
 	{
-		Phases phases = ofy().load().type(Phases.class).filter("appID", id).first().now();
+		log.fine("Deleting phase " + phaseName + " from team " + team);
+		
+		Phases phases = ofy().load().type(Phases.class).filter("teamName", team).first().now();
+				
 		
 		int size = phases.getPhaseList().size();
 		for (int i=0; i < size; i++)
 		{
 			Phase ph = phases.getPhaseList().get(i);
-			if (ph.getName().equals(name))
+			if (ph.getName().equals(phaseName))
 			{
+				log.fine("Phase to delete identified");
 				phases.getPhaseList().remove(i);
 				i = size;
 			}

@@ -185,8 +185,15 @@ public class SlackService
 			Date start = p.getStart();
 			if (start.after(now) ){
 				long gap = start.getTime() - now.getTime();
-				long days = gap / 86400000;				
-				sb.append( p.getName() ).append(" starts in ").append( days ).append(" days \n");
+				long days = gap / 86400000;		
+				if (days >= 1)
+				{
+					sb.append( p.getName() ).append(" starts in ").append( days ).append(" days \n");
+				}
+				else
+				{
+					sb.append( p.getName() ).append(" starts today ");
+				}
 				
 			}
 			
